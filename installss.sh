@@ -78,4 +78,6 @@ crontab /root/.ss/crontab
 # clean file
 rm -rf installss.sh  $Libsodium_ver $Libsodium_ver.tar.gz mbedtls-${MBEDTLS_VER}-gpl.tgz mbedtls-${MBEDTLS_VER} shadowsocks-libev
 
-echo "All Done!"
+echo "All Done! Reboot！！！"
+sleep 1
+reboot 
