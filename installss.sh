@@ -1,6 +1,11 @@
 #!/bin/bash
-# Install Shadowsocks-libev on CentOS7 for Serverq
+# Install Shadowsocks-libev on CentOS7 for Server
 # Run on ROOT
+# By Ariwori
+
+# password and port
+read -p "请设置服务器连接接密码：" password
+read -p "请设置服务器连接端口：" port
 
 yum update -y
 yum install epel-release -y
@@ -50,8 +55,8 @@ EOF
 cat > /etc/shadowsocks.json<<-EOF
 {
     "server":"0.0.0.0",
-    "server_port":8080,
-    "password":"lwq@123456",
+    "server_port":$port,
+    "password":"$password",
     "timeout":300,
     "user":"nobody",
     "method":"aes-128-gcm",
@@ -78,6 +83,8 @@ crontab /root/.ss/crontab
 # clean file
 rm -rf installss.sh  $Libsodium_ver $Libsodium_ver.tar.gz mbedtls-${MBEDTLS_VER}-gpl.tgz mbedtls-${MBEDTLS_VER} shadowsocks-libev
 
-echo "All Done! Reboot！！！"
-sleep 1
+echo "All Done! Reboot!!! Then ENJOY!!!"
+cat > /etc/shadowsocks.json
+
+read -p "任意键重启服务器>>>" rb
 reboot 

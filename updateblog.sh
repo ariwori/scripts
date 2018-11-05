@@ -31,6 +31,8 @@ then
     cp -rf $tmpdir/typechoblog/* $wwwroot/blog/
     cp -rf $tmpdir/typechouploads/* $wwwroot/blog/usr/uploads/
     rm -rf $wwwroot/blog/.git
+    chmod -R 755 $wwwroot/blog
+    chown -R nginx:nginx $wwwroot/blog
     echo ${new_ver} > /root/.blog/version.txt
 fi
 
