@@ -1,5 +1,6 @@
 #!/bin/bash
-# 简单的用于在CentOS7系统上一键SS的脚本，搬瓦工的建议选择带bbr的系统，脚本默认开启tcp_fast_open
+# 简单的用于在CentOS7系统上一键安装SS C语言版本服务端（Shadowsocks-libev）的脚本，搬瓦工的建议选择带bbr的系统，脚本默认开启tcp_fast_open
+# SSR已年久失修，而Shadowsocks-libev还一直有人维护，建议换用SS
 # Run on ROOT
 # By Ariwori
 
@@ -89,7 +90,7 @@ crontab /root/.ss/crontab
 rm -rf installss.sh  $Libsodium_ver $Libsodium_ver.tar.gz mbedtls-${MBEDTLS_VER}-gpl.tgz mbedtls-${MBEDTLS_VER} shadowsocks-libev
 
 echo "All Done! Reboot!!! Then ENJOY!!!"
-cat > /etc/shadowsocks.json
+cat /etc/shadowsocks.json
 
 echo "任意键重启服务器>>>"
 read rb
