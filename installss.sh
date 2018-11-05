@@ -1,11 +1,16 @@
 #!/bin/bash
-# Install Shadowsocks-libev on CentOS7 for Server
+# 简单的用于在CentOS7系统上一键SS的脚本，搬瓦工的建议选择带bbr的系统，脚本默认开启tcp_fast_open
 # Run on ROOT
 # By Ariwori
 
+# 使用方法，连接服务器终端执行以下命令即可，别带#号
+# yum install wget -y && wget https://qcloud.coding.net/u/ariwori/p/scripts/git/raw/master/installss.sh | bash installss.sh
+
 # password and port
-read -p "请设置服务器连接接密码：" password
-read -p "请设置服务器连接端口：" port
+echo "请设置服务器连接接密码："
+read password
+echo "请设置服务器连接端口：（如无占用建议常用的443 80 21 8080等端口）"
+read port
 
 yum update -y
 yum install epel-release -y
@@ -86,5 +91,6 @@ rm -rf installss.sh  $Libsodium_ver $Libsodium_ver.tar.gz mbedtls-${MBEDTLS_VER}
 echo "All Done! Reboot!!! Then ENJOY!!!"
 cat > /etc/shadowsocks.json
 
-read -p "任意键重启服务器>>>" rb
+echo "任意键重启服务器>>>"
+read rb
 reboot 
