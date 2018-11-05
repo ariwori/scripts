@@ -5,7 +5,7 @@
 # By Ariwori
 
 # 使用方法，连接服务器终端执行以下命令即可，别带#号
-# yum install wget -y && wget https://qcloud.coding.net/u/ariwori/p/scripts/git/raw/master/installss.sh | bash installss.sh
+# yum install wget -y && wget https://qcloud.coding.net/u/ariwori/p/scripts/git/raw/master/installss.sh && bash installss.sh
 
 # password and port
 echo "请设置服务器连接接密码："
