@@ -12,7 +12,7 @@ rsync --archive --one-file-system --inplace --hard-links \
   --acls --xattrs --sparse \
   --itemize-changes --verbose --progress \
   --exclude='*~' --exclude=__pycache__ \
-  --exclude-from="/home/ariwori/Ariwori/root.exclude" \
+  --exclude-from="/home/ariwori/Docfiles/root.exclude" \
   $src_dir $dest_dir
 
 # tar pkg per day and per hour

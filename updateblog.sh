@@ -1,6 +1,5 @@
 #!/bin/bash
 
-tmpdir='/tmp'
 update='false'
 wwwroot='/usr/share/nginx'
 if [ ! -f /root/.blog/version.txt ]
@@ -17,23 +16,22 @@ else
 fi
 if [[ ${update} == "true" ]]
 then
-    rm -rf $tmpdir/typechouploads
-    mkdir -p $tmpdir/typechouploads
-    cp -rf $wwwroot/blog/usr/uploads/* $tmpdir/typechouploads/
-    if [ ! -d $tmpdir/typechoblog ]
+
+    if [ ! -d $wwwroot/blog ]
     then
-        git clone git@git.dev.tencent.com:ariwori/typechoblog.git $tmpdir/typechoblog
-    else
-        cd /tmp/typechoblog && git pull
+        git clone git@git.dev.tencent.com:ariwori/typechoblog.git $wwwroot/blog
     fi
-    rm -rf $wwwroot/blog
-    mkdir -p $wwwroot/blog
-    cp -rf $tmpdir/typechoblog/* $wwwroot/blog/
-    cp -rf $tmpdir/typechouploads/* $wwwroot/blog/usr/uploads/
-    rm -rf $wwwroot/blog/.git
+    cd $wwwroot/blog
+
+    mysqldump typecho > typecho.sql
+
+    git pull
+    git add .
+    git commit -m "$(date) update from server"
+    git push && echo ${new_ver} > /root/.blog/version.txt
+
     chmod -R 755 $wwwroot/blog
     chown -R nginx:nginx $wwwroot/blog
-    echo ${new_ver} > /root/.blog/version.txt
 fi
 
 # * * * * * sleep 5; flock -xn /root/.blog/blog.lock -c 'bash /root/.blog/updateblog.sh'
