@@ -202,7 +202,7 @@ Diff_file(){
 }
 Update_script(){
     info "正在检查脚本是否有更新 ..."
-    wget https://wqlin.com/files/ss/ss.sh -O /tmp/ss.sh -o /tmp/ss.log
+    wget https://raw.githubusercontent.com/ariwori/scripts/master/ss.sh -O /tmp/ss.sh -o /tmp/ss.log
     if grep "‘/tmp/ss.sh’ saved" /tmp/ss.log > /dev/null 2>&1
     then
         if Diff_file /tmp/ss.sh $HOME/ss.sh
