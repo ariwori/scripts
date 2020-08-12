@@ -3020,10 +3020,16 @@ then
     if [ $release == "centos" ]
     then
         str="sudo yum install -y tmux"
+        sudo yum install -y tmux
     else
         str="sudo apt install -y tmux"
+        sudo apt install -y tmux
     fi
-    error "Tmux 安装失败，请尝试手动执行 $str, 若仍安装失败请自查原因解决！" && exit 1
+    tmux ls > /dev/null 2>&1
+    if [ $? == 127 ]
+    then
+        error "Tmux 安装失败，请尝试手动执行 $str, 若仍安装失败请自查原因解决！" && exit 1
+    fi
 fi
 Send_md5_ip
 clear
